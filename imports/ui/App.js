@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme();
 
 export default class App extends Component {
     render() {
 	return (
-	    <div>
-	      <p>This is some text</p>
-	    </div>
+	    <MuiThemeProvider theme={theme}>
+	      <p>Some text</p>
+	      <CircularProgress/>
+	    </MuiThemeProvider>
 	);
     }
 }

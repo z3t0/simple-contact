@@ -57,9 +57,9 @@ class MenuAppBar extends React.Component {
             <Typography variant="title" color="inherit" className={classes.flex}>
               Simple Contact
             </Typography>
-	    <Button color="inherit">Home</Button>
-	    <Button color="inherit">Contact</Button>
-	    <Button color="inherit">Sign in</Button>
+	    <Button color="inherit" href="/">Home</Button>
+	    <Button color="inherit" href="/contact">Contact</Button>
+	    <Button color="inherit" href="/sign-in">Sign in</Button>
           </Toolbar>
         </AppBar>
       </div>

@@ -61,6 +61,7 @@ class MenuAppBar extends React.Component {
 	    <Button color="inherit" href="/contact">Contact</Button>
 	    <Button color="inherit" href="/sign-in">Sign in</Button>
 	    <Button color="inherit" href="/sign-up">Sign up</Button>
+	    <Button color="inherit" href="/admin">Admin</Button>
           </Toolbar>
         </AppBar>
       </div>

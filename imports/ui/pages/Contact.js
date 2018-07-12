@@ -8,13 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import ContactForm from '../components/ContactForm.js';
 
 import AppBar from '../AppBar.js';
+import CenterGrid from '../components/CenterGrid.js';
 
 const styles = theme => ({
-    root: {
-	flexGrow: 1,
-	padding: theme.spacing.unit * 4,
-	margin: theme.spacing.unit * 4,
-    },
     paper: {
 	padding: theme.spacing.unit * 4,
 	textAlign: 'center',
@@ -37,19 +33,15 @@ class ContactPage extends Component {
 	return (
 	    <div>
 	      <AppBar/>
-	      <div className={classes.root}>
-		<Grid container spacing={24} justify='center'>
-		  <Grid item>
-		    <Paper className={classes.paper}>
-		      <Typography className={classes.typography} variant="title">Contact Form</Typography>
-		      <Typography className={classes.typography} variant="subheading">
-			Please enter your information below and we will reach out shortly.
-		      </Typography>
-		      <ContactForm/>
-		    </Paper>
-		  </Grid>
-		</Grid>
-	      </div>
+	      <CenterGrid>
+		<Paper className={classes.paper}>
+		  <Typography className={classes.typography} variant="title">Contact Form</Typography>
+		  <Typography className={classes.typography} variant="subheading">
+		    Please enter your information below and we will reach out shortly.
+		  </Typography>
+		  <ContactForm/>
+		</Paper>
+	      </CenterGrid>
 	    </div>
 	);
     }

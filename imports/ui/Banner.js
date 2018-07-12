@@ -10,6 +10,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import CenterGrid from './components/CenterGrid.js';
+
 const styles = theme => ({
   root: {
       flexGrow: 1,
@@ -31,20 +33,17 @@ class Banner extends Component {
 
     render() {
 
+
 	const { classes } = this.props;
 
 	return (
 	    <div className={classes.root}>
-	      <Grid container spacing={24}>
-		<Grid item xs={12}>
+	      <CenterGrid>
 		  <Paper className={classes.paper}>
 		    <Typography color="inherit" variant="display3">
 		      Welcome to Simple Contact
 		    </Typography>
 		  </Paper>
-		</Grid>
-
-		<Grid item xs={12}>
 		  <Paper className={classes.paper}>
 		    <Typography color="inherit" variant="subheading">
 		      This is an application developed using the following modern web technologies.
@@ -63,9 +62,8 @@ class Banner extends Component {
 		      }
 		       </List>
 		  </Paper>
-		</Grid>
 
-	      </Grid>
+	      </CenterGrid>
 	    </div>
 	);
     }

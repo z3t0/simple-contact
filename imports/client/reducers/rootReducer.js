@@ -1,9 +1,8 @@
 import { combineReducers }from 'redux';
 import pageSkip from './pageSkipperReducer.js';
 
-con
-st rootReducer = combineReducers({
+const rootReducer = combineReducers({
     pageSkip,
 });
 
-export default rootReducere
+export default rootReducer;

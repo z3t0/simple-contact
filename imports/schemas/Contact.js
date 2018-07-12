@@ -1,8 +1,12 @@
 import SimpleSchema from 'simpl-schema';
 
 let validateZipCode = () => {
-    return new RegExp('[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]')
-}
+    return new RegExp('[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]');
+};
+
+let validateTelephone = () => {
+    return /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+};
 
 export default Contact = new SimpleSchema({
     firstName: String,
@@ -12,7 +16,10 @@ export default Contact = new SimpleSchema({
 	regEx: SimpleSchema.RegEx.Email
     },
     age: SimpleSchema.Integer,
-    telephone: SimpleSchema.RegEx.Phone,
+    telephone: {
+	type: String,
+	regEx: validateTelephone,
+    },
     address: Object,
     'address.street 1': String,
     'address.street 2': { type: String, optional: true },

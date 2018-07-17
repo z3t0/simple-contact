@@ -7,9 +7,7 @@ export default class contactRoot extends Component {
 
     render() {
 	return (
-	    <Provider store={Store}>
-	      <ContactList/>
-	    </Provider>
+		<ContactList/>
 	)
     }
 }

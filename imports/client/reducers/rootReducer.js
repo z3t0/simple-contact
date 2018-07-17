@@ -1,10 +1,12 @@
 import { combineReducers }from 'redux';
 import pageSkip from './pageSkipperReducer.js';
-import authentication from './authentication.js';
+import setAuthState from './setAuthState.js';
+import setRoute from './setAuthState.js';
+
 
 const rootReducer = combineReducers({
     pageSkip,
-    authentication
+    setAuthState,
 });
 
 export default rootReducer;

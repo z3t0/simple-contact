@@ -8,6 +8,8 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CenterGrid from '../components/CenterGrid.js';
 import AppBar from '../AppBar.js';
 
+import route from '../../client/actions/route.js';
+
 const theme = createMuiTheme();
 
 export default class NotFoundPage extends Component {
@@ -20,7 +22,7 @@ export default class NotFoundPage extends Component {
 		  <Typography variant="subheading">
 		    Page Not Found
 		  </Typography>
-		  <Button color="inherit" href="/">Return Home</Button>
+		  <Button color="inherit" onClick={() => route("/")}>Return Home</Button>
 		</div>
 	      </CenterGrid>
 	    </MuiThemeProvider>

@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+
 import AppBar from '@material-ui/core/AppBar';
+
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,8 +16,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 
+import { connect }  from 'react-redux';
+import { compose } from 'redux';
+
 import Store from '../client/store.js';
+
 import logOut from '../client/actions/logOut.js';
+import route from '../client/actions/route.js';
+
 
 import { Meteor } from 'meteor/meteor';
 
@@ -51,17 +59,29 @@ class MenuAppBar extends React.Component {
     };
 
     logOut = () => {
+	console.log('logout');
 	Store.dispatch(logOut());
+    }
+
+    navigate (url) {
+	Store.dispatch(route(url));
     }
 
     renderAuthentication () {
 	const user = Meteor.userId();
 
 	if (user != null) {
-	    return (<Button color="inherit" onClick={this.logOut} href="/">Sign Out</Button>);
+	    return (
+		<div>
+		  <Button color="inherit" onClick={this.logOut}>Sign Out</Button>
+
+		  <Button color="inherit" onClick={() => this.navigate("/contact-list")}>Admin</Button>
+		</div>
+);
 	}
-	else {
-	    return (<Button color="inherit" href="/sign-in">Sign In</Button>);
+	else {return (<Button color="inherit" onClick={() => this.navigate('/sign-in')}>
+		    Sign In
+		    </Button>);
 	}
     }
 
@@ -77,14 +97,13 @@ class MenuAppBar extends React.Component {
 		<Typography variant="title" color="inherit" className={classes.flex}>
 		  Simple Contact
 		</Typography>
-		<Button color="inherit" href="/">Home</Button>
-		<Button color="inherit" href="/contact">Contact</Button>
+		<Button color="inherit" onClick={() => this.navigate("/")}>Home</Button>
+		<Button color="inherit" onClick={() => this.navigate("/contact")}>Contact</Button>
 
 		{
 		    this.renderAuthentication()
 		}
 
-		<Button color="inherit" href="/contact-list">Admin</Button>
 		</Toolbar>
 		</AppBar>
 		</div>
@@ -96,4 +115,10 @@ MenuAppBar.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MenuAppBar);
+export default compose(
+    withStyles(styles,
+	       {
+		   name: 'MenuAppbar',
+	       }),
+    connect()
+)(MenuAppBar);

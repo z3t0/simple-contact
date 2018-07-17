@@ -20,7 +20,7 @@ export default class NotAuthenticated extends Component {
 		  <Typography variant="subheading">
 		    Please Sign in to Access this content
 		  </Typography>
-		  <Button color="inherit" href="/sign-in">Sign In</Button>
+		  <Button color="inherit" onClick={() => route("/sign-in")}>Return Home</Button>
 		</div>
 	      </CenterGrid>
 	    </MuiThemeProvider>

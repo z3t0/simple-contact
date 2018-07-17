@@ -6,8 +6,15 @@ import rootReducer from './reducers/rootReducer';
 
 import { Meteor } from 'meteor/meteor';
 
-const middleware = [ReduxThunk, logger];
+import { connectRouter, routerMiddleware } from 'connected-react-router';
 
-const Store = createStore(rootReducer, {}, applyMiddleware(...middleware));
+import { history } from '../startup/client/history.js';
+
+const middleware = [routerMiddleware(history), ReduxThunk, logger]
+
+const Store = createStore(
+    connectRouter(history)(rootReducer),
+    {},
+    applyMiddleware(...middleware));
 
 export default Store;

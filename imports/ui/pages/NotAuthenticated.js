@@ -8,6 +8,8 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CenterGrid from '../components/CenterGrid.js';
 import AppBar from '../AppBar.js';
 
+import { push } from 'connected-react-router';
+
 const theme = createMuiTheme();
 
 export default class NotAuthenticated extends Component {
@@ -20,7 +22,7 @@ export default class NotAuthenticated extends Component {
 		  <Typography variant="subheading">
 		    Please Sign in to Access this content
 		  </Typography>
-		  <Button color="inherit" onClick={() => route("/sign-in")}>Return Home</Button>
+		  <Button color="inherit" onClick={() => push("/sign-in")}>Return Home</Button>
 		</div>
 	      </CenterGrid>
 	    </MuiThemeProvider>

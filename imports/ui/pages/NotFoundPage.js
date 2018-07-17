@@ -10,6 +10,8 @@ import AppBar from '../AppBar.js';
 
 import route from '../../client/actions/route.js';
 
+import { push } from 'connected-react-router';
+
 const theme = createMuiTheme();
 
 export default class NotFoundPage extends Component {
@@ -22,7 +24,7 @@ export default class NotFoundPage extends Component {
 		  <Typography variant="subheading">
 		    Page Not Found
 		  </Typography>
-		  <Button color="inherit" onClick={() => route("/")}>Return Home</Button>
+		  <Button color="inherit" onClick={() => push("/")}>Return Home</Button>
 		</div>
 	      </CenterGrid>
 	    </MuiThemeProvider>

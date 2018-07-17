@@ -1,6 +1,6 @@
 import { dispatch } from '../store.js';
 import { history } from '../../startup/client/routes.js';
-import route from '../actions/route.js';
+import { push } from 'connected-react-router';
 
 export default function login(credentials) {
     return (dispatch) => {
@@ -9,7 +9,7 @@ export default function login(credentials) {
 				     if (!err) {
 					 dispatch({type: 'SET_AUTH_STATE', state: true});
 
-					 dispatch(route('/'));
+					 dispatch(push('/'));
 				     }
 				     else {
 					 dispatch({type: 'AUTH_ERROR', error: err});

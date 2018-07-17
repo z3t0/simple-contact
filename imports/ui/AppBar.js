@@ -22,7 +22,7 @@ import { compose } from 'redux';
 import Store from '../client/store.js';
 
 import logOut from '../client/actions/logOut.js';
-import route from '../client/actions/route.js';
+import { push } from 'connected-react-router';
 
 
 import { Meteor } from 'meteor/meteor';
@@ -64,13 +64,12 @@ class MenuAppBar extends React.Component {
     }
 
     navigate (url) {
-	Store.dispatch(route(url));
+	Store.dispatch(push(url));
     }
 
     renderAuthentication () {
-	const user = Meteor.userId();
 
-	if (user != null) {
+	if (this.props.authState.loggedIn) {
 	    return (
 		<div>
 		  <Button color="inherit" onClick={this.logOut}>Sign Out</Button>
@@ -115,10 +114,16 @@ MenuAppBar.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
+const mapStateToProps = state => {
+    return {
+	authState: state.authState
+    };
+}
+
 export default compose(
     withStyles(styles,
 	       {
 		   name: 'MenuAppbar',
 	       }),
-    connect()
+    connect(mapStateToProps)
 )(MenuAppBar);

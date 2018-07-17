@@ -14,7 +14,7 @@ export default class ContactDialog extends Component {
     
     render() {
 
-	const contact = this.props.data
+	const contact = this.props.data.contact
 	const { classes, onClose, selectedValue, ...other } = this.props;
 
 
@@ -31,6 +31,10 @@ export default class ContactDialog extends Component {
 		  </TableRow>
 		</TableHead>
 		<TableBody>
+		  <TableRow>
+		    <TableCell>Form Submission ID</TableCell>
+		    <TableCell>{this.props.data._id}</TableCell>
+		  </TableRow>
 		  <TableRow>
 		    <TableCell>First Name</TableCell>
 		    <TableCell>{contact.firstName}</TableCell>

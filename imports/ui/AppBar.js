@@ -14,63 +14,86 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 
+import Store from '../client/store.js';
+import logOut from '../client/actions/logOut.js';
+
+import { Meteor } from 'meteor/meteor';
+
 const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  flex: {
-    flex: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
+    root: {
+	flexGrow: 1,
+    },
+    flex: {
+	flex: 1,
+    },
+    menuButton: {
+	marginLeft: -12,
+	marginRight: 20,
+    },
 };
 
 class MenuAppBar extends React.Component {
-  state = {
-    auth: true,
-    anchorEl: null,
-  };
+    state = {
+	auth: true,
+	anchorEl: null,
+    };
 
-  handleChange = (event, checked) => {
-    this.setState({ auth: checked });
-  };
+    handleChange = (event, checked) => {
+	this.setState({ auth: checked });
+    };
 
-  handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
+    handleMenu = event => {
+	this.setState({ anchorEl: event.currentTarget });
+    };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
+    handleClose = () => {
+	this.setState({ anchorEl: null });
+    };
 
-  render() {
-    const { classes } = this.props;
-    const { auth, anchorEl } = this.state;
-    const open = Boolean(anchorEl);
+    logOut = () => {
+	Store.dispatch(logOut());
+    }
 
-    return (
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="title" color="inherit" className={classes.flex}>
-              Simple Contact
-            </Typography>
-	    <Button color="inherit" href="/">Home</Button>
-	    <Button color="inherit" href="/contact">Contact</Button>
-	    <Button color="inherit" href="/sign-in">Sign in</Button>
-	    <Button color="inherit" href="/sign-up">Sign up</Button>
-	    <Button color="inherit" href="/admin">Admin</Button>
-          </Toolbar>
-        </AppBar>
-      </div>
-    );
-  }
+    renderAuthentication () {
+	const user = Meteor.userId();
+
+	if (user != null) {
+	    return (<Button color="inherit" onClick={this.logOut} href="/">Sign Out</Button>);
+	}
+	else {
+	    return (<Button color="inherit" href="/sign-in">Sign In</Button>);
+	}
+    }
+
+    render() {
+	const { classes } = this.props;
+	const { auth, anchorEl } = this.state;
+	const open = Boolean(anchorEl);
+
+	return (
+		<div className={classes.root}>
+		<AppBar position="static">
+		<Toolbar>
+		<Typography variant="title" color="inherit" className={classes.flex}>
+		  Simple Contact
+		</Typography>
+		<Button color="inherit" href="/">Home</Button>
+		<Button color="inherit" href="/contact">Contact</Button>
+
+		{
+		    this.renderAuthentication()
+		}
+
+		<Button color="inherit" href="/contact-list">Admin</Button>
+		</Toolbar>
+		</AppBar>
+		</div>
+	);
+    }
 }
 
 MenuAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(MenuAppBar);

@@ -1,11 +1,13 @@
 
 import { applyMiddleware, createStore } from 'redux';
-import { createLogger } from 'redux-logger';
+import logger from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
 import rootReducer from './reducers/rootReducer';
 
-const logger = createLogger();
+import { Meteor } from 'meteor/meteor';
+
 const middleware = [ReduxThunk, logger];
 
 const Store = createStore(rootReducer, {}, applyMiddleware(...middleware));
+
 export default Store;

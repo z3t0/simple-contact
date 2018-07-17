@@ -12,13 +12,29 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
+import { Meteor } from 'meteor/meteor';
+
+import NotAuthenticated from '../pages/NotAuthenticated.js';
 
 class ContactList extends Component {
+
+    renderNotAuthenticated() {
+
+	return (
+	    <NotAuthenticated/>
+	);
+    }
 
     render() {
 
 	const {dispatch} = this.props;
 	const contacts = this.props.contactList;
+
+	const user = Meteor.userId();
+
+	if (!user) {
+	    return this.renderNotAuthenticated();
+	}
 	
 	return (
 	    <div className="container">

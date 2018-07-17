@@ -43,7 +43,7 @@ export default class ContactListItem extends Component{
 		<ContactDialog
 		  open={this.state.open}
 		  onClose={this.handleClose}
-		  data={contact}
+		  data={this.props.data}
 		  />
 	      </TableRow>
 	);

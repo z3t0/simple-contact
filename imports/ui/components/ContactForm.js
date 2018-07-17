@@ -10,7 +10,6 @@ import ContactSchema from '../../schemas/Contact';
 export default class ContactForm extends Component {
 
     onSubmit(model) {
-	console.log(model);
 	Store.dispatch(addContact(model));
     }
 

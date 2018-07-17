@@ -10,7 +10,7 @@ import AppBar from '../AppBar.js';
 
 const theme = createMuiTheme();
 
-export default class NotFoundPage extends Component {
+export default class NotAuthenticated extends Component {
     render() {
 	return (
 	    <MuiThemeProvider theme={theme}>
@@ -18,9 +18,9 @@ export default class NotFoundPage extends Component {
 	      <CenterGrid>
 		<div>
 		  <Typography variant="subheading">
-		    Page Not Found
+		    Please Sign in to Access this content
 		  </Typography>
-		  <Button color="inherit" href="/">Return Home</Button>
+		  <Button color="inherit" href="/sign-in">Sign In</Button>
 		</div>
 	      </CenterGrid>
 	    </MuiThemeProvider>

@@ -17,7 +17,7 @@ export default Contact = new SimpleSchema({
     },
     age: SimpleSchema.Integer,
     telephone: {
-	type: String,
+	type: Number,
 	regEx: validateTelephone,
     },
     address: Object,
